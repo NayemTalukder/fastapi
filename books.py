@@ -24,11 +24,12 @@ async def read_all_books():
     return BOOKS
 
 
-@app.get('/books/mybook')
-async def read_favorite_book():
-    return {'book_title': 'My favorite book'}
-
-
-@app.get('/{book_name}')
-async def read_all_books(book_name: str):
-    return BOOKS[book_name]
+@app.get('/directions/{direction_name}')
+async def get_direction(direction_name: DirectionName):
+    if direction_name == DirectionName.north:
+        return {'Direction': direction_name, 'sub': 'Up'}
+    if direction_name == DirectionName.south:
+        return {'Direction': direction_name, 'sub': 'Down'}
+    if direction_name == DirectionName.west:
+        return {'Direction': direction_name, 'sub': 'Left'}
+    return {'Direction': direction_name, 'sub': 'Right'}
