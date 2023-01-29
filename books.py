@@ -22,3 +22,13 @@ class DirectionName(str, Enum):
 @app.get('/')
 async def read_all_books():
     return BOOKS
+
+
+@app.get('/books/mybook')
+async def read_favorite_book():
+    return {'book_title': 'My favorite book'}
+
+
+@app.get('/{book_name}')
+async def read_all_books(book_name: str):
+    return BOOKS[book_name]
